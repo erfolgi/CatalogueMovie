@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="masukkan_nama_film">Masukkan Nama Film</string>
+    <string name="cari">Cari</string>
+    <string name="search">Cari</string>
+    <string name="change_language">Ganti Language</string>
+    <string name="movies">Film</string>
+    <string name="Now_Playing">Sedang Tayang</string>
+    <string name="Coming_Soon">Segera Tayang</string>
+    <string name="setting">Preferensi Bahasa</string>
+    <string name="lang">id-ID</string>
+    <string name="movie">Film</string>
+    <string name="wait">Harap Tunggu..</string>
+    <string name="finished">Selesai Memuat</string>
+    <string name="movie_title">Judul Film</string>
+    <string name="overview">Sinopsis:</string>
+    <string name="release_date">Tanggal Rilis:  </string>
+    <string name="watch_now">Tonton Sekarang</string>
+    <string name="detail">Detail</string>
+    <string name="share">Bagikan</string>
+    <string name="favorite">Favorit</string>
+    <string name="add">Ditambahkan ke Favorit</string>
+    <string name="remove">Dihapus dari Favorit</string>
+
+</resources>
