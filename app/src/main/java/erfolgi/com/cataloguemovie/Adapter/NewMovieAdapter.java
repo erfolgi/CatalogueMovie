@@ -54,7 +54,6 @@ public class NewMovieAdapter extends RecyclerView.Adapter<NewMovieAdapter.Catego
 
         Glide.with(context)
                 .load(mData.get(position).getGambar())
-                .crossFade()
                 .into(holder.imageViewGambar);
     }
 

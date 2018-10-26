@@ -68,6 +68,14 @@ public class FavHelper {
         return arrayList;
     }
 
+    public int count (){
+        String countQuery = "SELECT  * FROM "+DATABASE_TABLE;
+        Cursor cursor = database.rawQuery(countQuery, null);
+        int a = cursor.getCount();
+        cursor.close();
+        return a;
+    }
+
     public boolean check(String kata){
         //String sql=
         Cursor cursor = database.rawQuery("Select * from "+DATABASE_TABLE+" where "+TITLE+" = '"+kata+"'", null);

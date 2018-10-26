@@ -4,11 +4,13 @@ package erfolgi.com.cataloguemovie.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import erfolgi.com.cataloguemovie.Adapter.FavAdapter;
+import erfolgi.com.cataloguemovie.Adapter.FavCardAdapter;
 import erfolgi.com.cataloguemovie.DB.FavHelper;
 import erfolgi.com.cataloguemovie.DetailActivity;
 import erfolgi.com.cataloguemovie.Entity.Favorite;
@@ -35,11 +38,19 @@ public class FavoriteFragment extends Fragment {
     FavHelper favHelper;
     Context con;
     @BindView(R.id.SearchView)SearchView SW;
+    ArrayList<Favorite> fav;
+    ArrayList<Favorite> fav1;
+
 
     public FavoriteFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,13 +64,19 @@ public class FavoriteFragment extends Fragment {
         favHelper = new FavHelper(con);
         favAdapter = new FavAdapter(con);
 
-
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(con));
 
         recyclerView.setAdapter(favAdapter);
 
+
+
+
+
         favHelper.open();
-        final ArrayList<Favorite> fav = favHelper.query();
+//        final ArrayList<Favorite> fav = favHelper.query();
+        fav = favHelper.query();
+
         for (int i=0 ; i<fav.size();i++){
             Log.d("->JUDUL", fav.get(i).getTitle());
             Log.d("->DESKRIPSI", fav.get(i).getDescription());
@@ -98,7 +115,7 @@ public class FavoriteFragment extends Fragment {
         });
         return view;
     }
-    private void showRecyclerList(final ArrayList<Favorite> fav) {
+    private void showRecyclerList(final ArrayList<Favorite> fav) {//
         recyclerView.setLayoutManager(new LinearLayoutManager(con));
 
         favAdapter.addItem(fav);
@@ -119,6 +136,14 @@ public class FavoriteFragment extends Fragment {
        // return view;
     }
 
+    private void showRecyclerCardView(final ArrayList<Favorite> fav){//
+        Log.d("->", "Clicked 2");
+        recyclerView.setLayoutManager(new LinearLayoutManager(con));
+        FavCardAdapter cardView = new FavCardAdapter(con);
+        cardView.setListFilm(fav);
+        recyclerView.setAdapter(cardView);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -135,4 +160,22 @@ public class FavoriteFragment extends Fragment {
 
         favAdapter.addItem(fav);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_ListV:
+                Toast.makeText(getActivity(), "List View", Toast.LENGTH_SHORT).show();
+                showRecyclerList(fav);
+                Log.d("->", "Clicked");
+                break;
+            case R.id.action_CV:
+                Toast.makeText(getActivity(), "Card View", Toast.LENGTH_SHORT).show();
+                showRecyclerCardView(fav);
+                Log.d("->", "Clicked");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

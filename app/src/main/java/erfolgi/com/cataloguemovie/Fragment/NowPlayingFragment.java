@@ -117,7 +117,7 @@ public class NowPlayingFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(@NonNull Loader<ArrayList<MovieItems>> loader, ArrayList<MovieItems> data) {
         adapter.setData(data);
-        Toast.makeText(getActivity(), con.getString(R.string.finished), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), con.getString(R.string.finished), Toast.LENGTH_SHORT).show();
 
     }
 

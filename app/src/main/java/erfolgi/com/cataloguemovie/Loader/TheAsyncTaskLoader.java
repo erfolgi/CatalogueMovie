@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cz.msebera.android.httpclient.Header;
 import erfolgi.com.cataloguemovie.Item.MovieItems;
@@ -74,6 +75,7 @@ public class TheAsyncTaskLoader extends AsyncTaskLoader {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
                     String result = new String(responseBody);
+                    Log.d("<->", Arrays.toString(responseBody));
                     JSONObject responseObject = new JSONObject(result);
                     JSONArray list = responseObject.getJSONArray("results");
 

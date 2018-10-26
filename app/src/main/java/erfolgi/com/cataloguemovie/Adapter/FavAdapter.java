@@ -44,7 +44,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavHolder> {
 
         Glide.with(context)
                 .load(mData.get(position).getImage())
-                .crossFade()
                 .into(holder.Gambar);
     }
 

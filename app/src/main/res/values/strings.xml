@@ -35,4 +35,11 @@
     <string name="favorite">Favorite</string>
     <string name="add">Added to Favorite</string>
     <string name="remove">Removed from Favorite</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_text">NO DATA</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="new_movie_notification">New Movie Notification</string>
+    <string name="preference">Preference</string>
 </resources>

@@ -21,5 +21,8 @@
     <string name="favorite">Favorit</string>
     <string name="add">Ditambahkan ke Favorit</string>
     <string name="remove">Dihapus dari Favorit</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="new_movie_notification">Pemberitahuan Film Baru</string>
+    <string name="preference">Pengaturan</string>
 
 </resources>

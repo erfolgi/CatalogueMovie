@@ -57,7 +57,6 @@ public class SoonMovieAdapter extends RecyclerView.Adapter<SoonMovieAdapter.Cate
 
         Glide.with(context)
                 .load(sData.get(position).getGambars())
-                .crossFade()
                 .into(holders.imageViewGambar_s);
     }
 

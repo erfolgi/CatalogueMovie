@@ -1,6 +1,9 @@
 package erfolgi.com.cataloguemovie;
 
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,13 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -24,18 +23,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import erfolgi.com.cataloguemovie.DB.FavHelper;
 import erfolgi.com.cataloguemovie.Entity.Favorite;
+import erfolgi.com.cataloguemovie.widget.TheWidget;
 
 import static erfolgi.com.cataloguemovie.DB.DatabaseContract.CONTENT_URI;
 import static erfolgi.com.cataloguemovie.DB.DatabaseContract.NoteColumns.DATE;
 import static erfolgi.com.cataloguemovie.DB.DatabaseContract.NoteColumns.DESCRIPTION;
 import static erfolgi.com.cataloguemovie.DB.DatabaseContract.NoteColumns.IMAGE;
 import static erfolgi.com.cataloguemovie.DB.DatabaseContract.NoteColumns.TITLE;
+import static erfolgi.com.cataloguemovie.widget.TheWidget.UPDATE_ACTION;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static String EXTRA_JUDUL="judulnya";
     public static String EXTRA_DESC = "deskripsinya";
     public static String EXTRA_RILIS= "tanggalnya";
     public static String EXTRA_URL= "Gambarnya";
+
 
     FavHelper favHelper = new FavHelper(this);
 
@@ -124,6 +126,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(this, getString(R.string.add), Toast.LENGTH_SHORT).show();
                     icon.setImageResource(R.drawable.ic_favorite_yes);
                 }
+
+                Intent i = new Intent(this, TheWidget.class);
+
+                i.setAction(UPDATE_ACTION);
+                this.sendBroadcast(i);
             }catch (Exception e){
 
             }

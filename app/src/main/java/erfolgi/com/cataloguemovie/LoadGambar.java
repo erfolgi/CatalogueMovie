@@ -14,7 +14,6 @@ public class LoadGambar extends AsyncTask<String, Void, Bitmap> {
 
     public LoadGambar(ImageView imageView) {
         this.imageView = imageView;
-
     }
 
     protected Bitmap doInBackground(String... urls) {

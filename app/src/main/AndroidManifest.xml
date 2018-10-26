@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="erfolgi.com.cataloguemovie">
-    <permission android:name="com.erfolgi.cataloguemovie.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="com.erfolgi.cataloguemovie.WRITE_DATABASE" android:protectionLevel="normal"/>
 
+    <permission
+        android:name="com.erfolgi.cataloguemovie.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.erfolgi.cataloguemovie.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
+    <uses-permission
+        android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <meta-data
         android:name="API_KEY"
-        android:value="@string/API"/>
+        android:value="@string/API" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +28,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NavBar"
             android:theme="@style/AppTheme.NoActionBar">
@@ -27,12 +41,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="com.erfolgi.cataloguemovie"
             android:name=".provider.FavoriteProvider"
+            android:authorities="com.erfolgi.cataloguemovie"
             android:exported="true"
             android:readPermission="com.erfolgi.cataloguemovie.READ_DATABASE"
             android:writePermission="com.erfolgi.cataloguemovie.WRITE_DATABASE" />
+
+        <receiver android:name=".widget.TheWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/the_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".notification.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".widget.StackWidgetService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name=".notification.Alert"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

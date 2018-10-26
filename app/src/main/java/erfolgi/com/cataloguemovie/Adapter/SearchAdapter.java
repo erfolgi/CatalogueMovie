@@ -53,7 +53,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CategoryVi
 
         Glide.with(context)
                 .load(sData.get(position).getGambarf())
-                .crossFade()
                 .into(holders.imageViewGambar_f);
     }
 
